@@ -1,1 +1,33 @@
-<p>assign-unassign works!</p>
+<div class="cdk-drag-drop-wrapper">
+    <mat-form-field floatLabel="always" class="filter">
+      <mat-label i18n>Filtr</mat-label>
+      <input matInput [formControl]="filter" autocomplete="off">
+    </mat-form-field>
+    <div class="cdk-drag-drop-content">
+      <div class="cdk-drag-drop-side">
+        <h3 class="title" i18n>Nieprzypisane</h3>
+        <div cdkDropList #assignedList="cdkDropList" [cdkDropListData]="unassigned"
+          [cdkDropListConnectedTo]="unassignedList" (cdkDropListDropped)="drop($event)"
+          [ngClass]="'count-'+unassigned.length">
+          <div *ngFor="let item of unassigned" cdkDrag [cdkDragData]="item" (cdkDragStarted)="touched()"
+            [fxHide]="!shown(item)">
+            {{item.displayName}}
+          </div>
+        </div>
+      </div>
+      <div class="cdk-drag-drop-side">
+        <h3 class="title" i18n>Przypisane</h3>
+        <div cdkDropList #unassignedList="cdkDropList" [cdkDropListData]="assigned"
+          [cdkDropListConnectedTo]="assignedList" (cdkDropListDropped)="drop($event)"
+          [ngClass]="'count-'+assigned.length">
+          <div *ngFor="let item of assigned" cdkDrag [cdkDragData]="item" (cdkDragStarted)="touched()"
+            [fxHide]="!shown(item)">
+            {{item.displayName}}
+          </div>
+        </div>
+      </div>
+      <div class="icon-wrapper">
+        <mat-icon>swap_horiz</mat-icon>
+      </div>
+    </div>
+  </div>
