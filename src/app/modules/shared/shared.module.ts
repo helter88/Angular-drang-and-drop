@@ -25,6 +25,10 @@ import { AssignUnassignComponent } from './assign-unassign/assign-unassign.compo
     MatInputModule,
     ReactiveFormsModule
   ],
-  exports: [AssignUnassignComponent]
+  exports: [
+    AssignUnassignComponent,
+    ReactiveFormsModule,
+    MatInputModule
+  ]
 })
 export class SharedModule { }

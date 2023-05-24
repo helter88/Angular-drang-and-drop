@@ -1,1 +1,18 @@
-<h1>Nowy</h1>
+<h1>Nowy</h1> 
+<ng-container [formGroup]="form">
+    <mat-card>
+        <mat-card-content fxLayout="row wrap" fxLayoutAlign="start top" fxLayoutGap="20px grid">
+            <mat-form-field floatLabel="always" fxFlex="0 0 100%">
+                <mat-label>Definicija symulacji</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="form.get('name')?.hasError('required')">Pole wymagane</mat-error>
+              </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <h1>Campaigns</h1>
+        <mat-card-content fxLayout="row wrap" fxLayoutAlign="start top" fxLayoutGap="20px grid">
+            <cmp-assign-unassign [adapter]="campAdapter" [formControl]="chosenCampaign"></cmp-assign-unassign>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
